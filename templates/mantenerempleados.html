@@ -1,0 +1,25 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+
+    <h1 class="text-center pb-2"> Mantener Empleados </h1>
+    <div class="row pb-4 text-center">
+        <div class="col-12">
+            <a href="/empleado/">Ingresar nuevo Empleado</a> 
+        </div>
+    </div>
+    
+    <div class="row text-center">
+        {% for p in empleados %}
+            <div class="col-4 py-2 border border-danger rounded">
+                <h2>{{p.nombre}} {{p.apellido}} </h2>
+                <p>{{p.email}}</p>
+                {% if request.user.is_authenticated and request.user == p.user %}
+                <a href="/empleado/{{p.id}}">Editar</a> 
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    
+
+{% endblock %}

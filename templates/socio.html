@@ -1,0 +1,58 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+    <div class="row text-center">
+        <div class="col-12">
+            <h1> Datos del Socio </h1>
+        </div>
+    </div>
+    <div class="row py-5">
+        <div class="col-4">
+
+        </div>
+        <div class="col-4 text-center">
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                {% if socio is not None %}
+                    <input type="hidden" value="{{socio.id}}" name="id">
+                {% endif %}
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre del Socio"
+                    {% if socio is not None %}
+                        value = "{{socio.nombre}}"
+                    {% endif %}
+                    >
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="apellido" placeholder="Apellido del Socio"
+                    {% if socio is not None %}
+                        value = "{{socio.apellido}}"
+                    {% endif %}
+                    >
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="telefono" placeholder="Teléfono del Socio"
+                    {% if socio is not None %}
+                        value = "{{socio.telefono}}"
+                    {% endif %}
+                    >
+                </div>
+                <div class="form-group pb-4">
+                    <input type="email" class="form-control" name="email" placeholder="Email del Socio"
+                    {% if socio is not None %}
+                        value = "{{socio.email}}"
+                    {% endif %}
+                    >
+                </div>
+                <button class="btn btn-danger" type="submit">Confirmar Datos</button>
+            </form> 
+        </div>
+        <div class="col-4">
+            
+        </div>
+    </div>
+    
+
+{% endblock %}

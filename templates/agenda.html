@@ -1,0 +1,70 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+
+<div class="row text-center">
+    <div class="col-12">
+        <h1> Datos de la Agenda </h1>
+    </div>
+</div>
+<div class="row py-5">
+    <div class="col-4">
+
+    </div>
+    <div class="col-4 text-center">
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            {% if agenda is not None %}
+                <input type="hidden" value="{{agenda.id}}" name="id">
+            {% endif %}
+
+            <div class="form-group">
+                <input type="datetime" class="form-control" name="fecha" placeholder="Fecha de la Agenda"
+                {% if agenda is not None %}
+                    value = "{{agenda.fecha}}"
+                {% endif %}
+                >
+                <label class="pr-2 pt-2"> Formato: YYYY-MM-DD </label>
+            </div>
+            <div class="form-group">
+                <label class="pr-2"> Socio: </label>
+                <select name="socio">
+                    {% for socio in socios %}
+                        <option value="{{socio.id}}">{{socio.nombre}} {{socio.apellido}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="pr-2"> Servicio: </label>
+                <select name="servicio">
+                    {% for servicio in servicios %}
+                        <option value="{{servicio.id}}">{{servicio.nombre}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="pr-2"> Empleado: </label>
+                <select name="empleado">
+                    {% for empleado in empleados %}
+                        <option value="{{empleado.id}}">{{empleado.nombre}} {{empleado.apellido}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group pb-2">
+                <label class="pr-2"> Local: </label>
+                <select name="local">
+                    {% for local in locales %}
+                        <option value="{{local.id}}">{{local.nombre}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="btn btn-danger" type="submit">Confirmar Datos</button>
+        </form> 
+    </div>
+    <div class="col-4">
+        
+    </div>
+</div>
+
+{% endblock %}

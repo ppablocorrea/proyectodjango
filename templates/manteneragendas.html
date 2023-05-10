@@ -1,0 +1,27 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+
+    <h1 class="text-center pb-2"> Mantener Agendas </h1>
+    <div class="row pb-4 text-center">
+        <div class="col-12">
+            <a href="/agenda/">Ingresar nueva Agenda</a> 
+        </div>
+    </div>
+    
+    <div class="row text-center">
+        {% for p in agendas %}
+            <div class="col-4 py-2 border border-danger rounded">
+                <h2>{{p.fecha}}</h2>
+                <p>{{p.socio}}</p>
+                <p>{{p.servicio}}</p>
+                {% if request.user.is_authenticated and request.user == p.user %}
+                    <a href="/agenda/{{p.id}}">Editar</a>
+                {% endif %}
+                 
+            </div>
+        {% endfor %}
+    </div>
+    
+
+{% endblock %}
