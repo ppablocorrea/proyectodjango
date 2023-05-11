@@ -24,18 +24,20 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="/mantenersocios">Socios</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/mantenerservicios">Servicios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/mantenerempleados">Empleados</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/mantenerlocales">Locales</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/mantenerocupaciones">Ocupaciones</a>
-            </li>
+              {% if request.user.username == 'admin' %}
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/mantenerservicios">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/mantenerempleados">Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/mantenerlocales">Locales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/mantenerocupaciones">Ocupaciones</a>
+                </li>
+              {% endif %}
             {% endif %}
             {% if request.user.is_authenticated %}
               <li class="nav-item">

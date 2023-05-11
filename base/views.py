@@ -76,13 +76,18 @@ def manteneragendas(request):
 def agenda(request, id = None):
     if request.method == 'POST':
         id = request.POST.get('id')
+        fec = request.POST.get('fecha')
+        if fec == '':
+            fecha = None
+        else:
+            fecha = fec
         if id is None:
             socio_id = request.POST.get('socio')
             servicio_id = request.POST.get('servicio')
             empleado_id = request.POST.get('empleado')
             local_id = request.POST.get('local')
             Agenda.objects.create(
-                fecha = request.POST.get('fecha'),
+                fecha = fecha,
                 socio = Socio.objects.get(id = socio_id),
                 servicio = Servicio.objects.get(id = servicio_id),
                 empleado = Empleado.objects.get(id = empleado_id),
@@ -118,11 +123,16 @@ def agenda(request, id = None):
 def socio(request, id = None):
     if request.method == 'POST':
         id = request.POST.get('id')
+        tel = request.POST.get('telefono')
+        if tel == '':
+            telefono = None
+        else:
+            telefono = tel
         if id is None:
             Socio.objects.create(
                 nombre = request.POST.get('nombre'),
                 apellido = request.POST.get('apellido'),
-                telefono = request.POST.get('telefono'),
+                telefono = telefono,
                 email = request.POST.get('email')
             )
         else:
@@ -162,12 +172,17 @@ def servicio(request, id = None):
 def empleado(request, id = None):
     if request.method == 'POST':
         id = request.POST.get('id')
+        tel = request.POST.get('telefono')
+        if tel == '':
+            telefono = None
+        else:
+            telefono = tel
         if id is None:
             ocupacion_id = request.POST.get('ocupacion')
             Empleado.objects.create(
                 nombre = request.POST.get('nombre'),
                 apellido = request.POST.get('apellido'),
-                telefono = request.POST.get('telefono'),
+                telefono = telefono,
                 email = request.POST.get('email'),
                 ocupacion = Ocupacion.objects.get(id = ocupacion_id)
             )

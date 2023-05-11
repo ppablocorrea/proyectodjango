@@ -12,7 +12,7 @@ class Local(models.Model):
 class Socio(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
-    telefono = models.IntegerField()
+    telefono = models.IntegerField(null=True, default=None)
     email = models.EmailField()
     def __str__(self):
         return self.nombre + ' ' + self.apellido
@@ -32,14 +32,14 @@ class Servicio(models.Model):
 class Empleado(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
-    telefono = models.IntegerField()
+    telefono = models.IntegerField(null=True, default=None)
     email = models.EmailField()
     ocupacion = models.ForeignKey(Ocupacion, on_delete=models.CASCADE)
     def __str__(self):
         return self.nombre + ' ' + self.apellido
 
 class Agenda(models.Model):
-    fecha = models.DateTimeField()
+    fecha = models.DateTimeField(null=True, default=None)
     socio = models.ForeignKey(Socio, on_delete=models.CASCADE)
     servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
     empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
